@@ -7,12 +7,46 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
 
+    //Creating outlet for the table view to connect the table view to the view controller
+    @IBOutlet weak var myTableView: UITableView!
+    
+    //Initilizing taskArray as empty String array
+    var taskArray = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        //Appending values as a test
+        taskArray.append("Do Laundry")
+        taskArray.append("Charge Phone")
+        taskArray.append("Do Homework")
+        //Connecting the Table View to the delegate and the dataSource
+        myTableView.delegate = self
+        myTableView.dataSource = self
     }
+    
+    // This function determines how many sections there are in the TableView
+    // Created by Connor Watson
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    // This function determines how many rows(cells) are in the table
+    // Created by Connor Watson
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return taskArray.count
+    }
+    
+    // This function populates the cells of the table view with data
+    // Created by Connor Watson
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = myTableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
+        cell.textLabel?.text = taskArray[indexPath.row]
+        return cell
+    }
+    
 
 
 }
