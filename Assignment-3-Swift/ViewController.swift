@@ -47,7 +47,16 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
         return cell
     }
     
+    //This func is called when the + button is clicked
+    @IBAction func onAddClick(_ sender: Any) {
+        let alert = UIAlertController(title: "Add Item", message: "", preferredStyle: .alert)
 
-
+        let ok = UIAlertAction(title: "OK", style: .default) { (alertAction) in }
+        alert.addAction(ok)
+        
+        self.present(alert, animated: true, completion: nil)
+        
+    }
+    
 }
 
