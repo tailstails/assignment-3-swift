@@ -54,6 +54,9 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
         alert.addTextField { (textField) in
             textField.placeholder = "Write an Item"
         }
+        
+        let ok = UIAlertAction(title: "OK", style: .default) { (alertAction) in }
+        alert.addAction(ok)
 
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (alertAction) in }
         alert.addAction(cancel)
