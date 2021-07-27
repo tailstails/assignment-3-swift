@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
 
@@ -13,7 +14,13 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
     @IBOutlet weak var myTableView: UITableView!
     
     //Initilizing taskArray as empty String array
-    var taskArray = [String]()
+    var taskArray = [ItemsForToDoList]()
+    
+    //This will allow us to access the persistant container in the AppDelegate file,
+    //where the core data is, making it easier to use any entities and any use of core data as a whole
+    //Made by: Taeler Burgess
+    let context = (UIApplication.shared.delegate as!  AppDelegate).persistentContainer.viewContext
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,10 +67,40 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
 
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (alertAction) in }
         alert.addAction(cancel)
-
+        
+        
+        //Allowing any content from the textfield to be added as part of the to do list
+        let addedItemsToList = ItemsForToDoList(context: self.context)
+        addedItemsToList.taskName = UITextField()
+        self.taskArray.append(addedItemsToList)
         self.present(alert, animated: true, completion: nil)
+        self.itemsSaved()
+        self.present(alert, animated: true, completion: nil)
+        
+        
         
     }
     
+    //Purpose of the function will be to save the data that the inputted after the user
+    //adds their item to the to do list
+    //Based off of the saveContext function in AppDelegate file for core data purposes
+    func itemsSaved() {
+        
+        do {
+            
+            try context.save()
+        }
+        
+        catch {
+            
+            print("There was a problem saving the item. Please try again.")
+        }
+        
+    }
+ 
+    
 }
+
+
+
 
