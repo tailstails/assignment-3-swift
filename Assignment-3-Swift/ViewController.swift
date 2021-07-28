@@ -52,13 +52,14 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
         return cell
     }
     
-    //This func is called when the + button is clicked
+        //This func is called when the + button is clicked
+        //Made by: Hang Dang
         @IBAction func onAddClick(_ sender: Any) {
             
             var inputTextField = UITextField()
             
             let alert = UIAlertController(title: "Add Item", message: "", preferredStyle: .alert)
-
+            //Made by: Sajal Santhosh
             alert.addTextField { (textField) in
                 inputTextField = textField
                 inputTextField.placeholder = "Write an Item"
@@ -76,7 +77,8 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
             }
             
             alert.addAction(ok)
-
+            
+            //Made by: Sajal Santhosh
             let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (alertAction) in }
             alert.addAction(cancel)
                     
